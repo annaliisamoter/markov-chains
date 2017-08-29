@@ -48,25 +48,19 @@ def make_chains(text_string):
     for i in range(len(low) - 2):
         key = (low[i], low[i + 1])
 
-        value = [low[i + 2]]
-
         if key in chains:
+            #value = [low[i + 2]]
             value.append(low[i + 2])
 
-        # else:
+        else:
+            value = [low[i + 2]]
+            chains[key] = value
 
-        #     chains[key] = value
-        #     value.append(low[i + 2])
-
-    print chains
-
-        #if key in chains:
+    for item in chains.items():
+        print item
 
 
-
-
-
-    return chains
+    # return chains
 
 
 def make_text(chains):
