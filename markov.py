@@ -58,7 +58,8 @@ def make_chains(text_string, n):
         else:
             value = [word_list[i + n]]
             chains[key] = value
-
+    from pprint import pprint
+    pprint(chains)
     return chains
 
 
@@ -66,18 +67,17 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
-    import random
-    new_key = random.choice(chains.keys())
+
+    new_key = choice(chains.keys())
     value_list = chains[new_key]
 
     words.extend(new_key)
 
     while new_key in chains:
 
-        random_word_to_add = random.choice(value_list)
+        random_word_to_add = choice(value_list)
         words.append(random_word_to_add)
-        new_key_list = words[-(n+1):-1]
-        #new_key_list.append(random_word_to_add)
+        new_key_list = words[-n:]
         new_key = tuple(new_key_list)
         print new_key
 
