@@ -1,6 +1,7 @@
 """Generate Markov text from text files."""
 
 from random import choice
+from pprint import pprint
 import sys
 input_path = sys.argv[1]
 n = int(sys.argv[2])
@@ -58,8 +59,7 @@ def make_chains(text_string, n):
         else:
             value = [word_list[i + n]]
             chains[key] = value
-    from pprint import pprint
-    pprint(chains)
+
     return chains
 
 
@@ -67,8 +67,11 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
+    capitalized_keys = sorted(chains)
+    capitalized_key_options = capitalized_keys[:2]
+    pprint(capitalized_keys)
 
-    new_key = choice(chains.keys())
+    new_key = choice(capitalized_key_options)
     value_list = chains[new_key]
 
     words.extend(new_key)
