@@ -42,34 +42,40 @@ def make_chains(text_string):
 
     chains = {}
 
-    low = input_text.split()
+    word_list = input_text.split()
 
-
-    for i in range(len(low) - 2):
-        key = (low[i], low[i + 1])
+    for i in range(len(word_list) - 2):
+        key = (word_list[i], word_list[i + 1])
 
         if key in chains:
-            #value = [low[i + 2]]
-            value.append(low[i + 2])
+            value = chains[key]
+            value.append(word_list[i + 2])
 
         else:
-            value = [low[i + 2]]
+            value = [word_list[i + 2]]
             chains[key] = value
 
-    for item in chains.items():
-        print item
-
-
-    # return chains
+    return chains
 
 
 def make_text(chains):
     """Return text from chains."""
 
     words = []
+    import random
 
-    # your code goes here
+    value_list = chains[("Would", "you")]
 
+    words.append("Would you")
+
+    # while True:
+    index = random.randint(0, (len(value_list) - 1))
+
+    chosen_value = value_list[index]
+    words.append(chosen_value)
+
+
+    print words
     return " ".join(words)
 
 
